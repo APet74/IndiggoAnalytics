@@ -108,11 +108,9 @@ public class AnalyticDAO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(counter / 8 + " " + counter);
 
         LocalDate firstDate = LocalDate.parse("2020-11-" + (counter == 0 ? 1 : counter / 8), dtf);
         long daysBetween = ChronoUnit.DAYS.between(firstDate, today);
-        System.out.println(daysBetween);
         //Extremely inefficient way of generating data. Uses the counter from the while to determine what dates are NOT in the CSV and add them. Randomly generates metrics for those dates. Math for those random generation was just estimates based on standard trends.
             for(int i = 1; i < daysBetween+1; i++){
                 int users = (int) (Math.random() * (1000 - 250 + 1) + 250);
@@ -122,9 +120,7 @@ public class AnalyticDAO {
                 int sessions = (int) (Math.random() * (1400 - users + 1) + users);
                 int oSessions = (int) (Math.random() * (sessions - oUsers + 1) + oUsers);
                 int pageviews = (int) (Math.random() * (3000 - sessions + 1) + sessions);
-                int oPageviews = (int) (Math.random() * (pageviews - oSessions + 1) + oSessions);
-
-                System.out.println(users +  " | " + newUsers + " | " + oUsers + " | " + oNewUsers);
+                int oPageviews = (int) (Math.random() * (pageviews - oSessions + 1) + oSessions);   
 
                 Analytic userAnalytic = new Analytic(LocalDate.parse("2020-11-" + (counter / 8 + i), dtf), users, 1, searchMetrics(metrics, 1), false  );
                 Analytic newUserAnalytic = new Analytic(LocalDate.parse("2020-11-" + (counter / 8 + i), dtf), newUsers, 4, searchMetrics(metrics, 4), false  );
