@@ -157,7 +157,7 @@ public class AnalyticDAO {
     }
 
     /**
-     * rewrites all the data to CSV to make sure data is persistent. 
+     * rewrites all the data to CSV to make sure data is persistent.
      * @param obj
      */
     private void writeToCSV(Analytic obj) {
